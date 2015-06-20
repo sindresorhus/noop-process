@@ -1,0 +1,37 @@
+{
+  "name": "noop-process",
+  "version": "0.0.0",
+  "description": "Create a noop process and get the PID",
+  "license": "MIT",
+  "repository": "sindresorhus/noop-process",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js && node test2.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "noop",
+    "moot",
+    "process",
+    "proc",
+    "ps",
+    "proc",
+    "spawn",
+    "pid",
+    "test",
+    "testing"
+  ],
+  "devDependencies": {
+    "ava": "0.0.4",
+    "ps-list": "^2.0.0"
+  }
+}
