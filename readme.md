@@ -36,6 +36,8 @@ Type: `string`
 
 Give the process a [title](https://nodejs.org/api/process.html#process_process_title) to make it easier to see in `ps` or kill it with `killall`.
 
+Maximum 15 characters as anything longer will be truncated by the system.
+
 ##### persistent
 
 Type: `boolean`  

@@ -18,6 +18,10 @@ process.on('exit', function () {
 module.exports = function (opts) {
 	opts = opts || {};
 
+	if (opts.title && opts.title.length > 15) {
+		throw new Error('The title can be maximum 15 characters');
+	}
+
 	var title = opts.title ? 'process.title = \'' + opts.title + '\';' : '';
 	var code = title + 'setInterval(function () {}, 1000 * 1000);';
 
