@@ -1,6 +1,6 @@
 'use strict';
 var test = require('ava');
-var psList = require('ps-list');
+var processExists = require('process-exists');
 var noopProcess = require('./');
 
 test('noopProcess()', function (t) {
@@ -16,11 +16,8 @@ test('noopProcess()', function (t) {
 
 	t.assert(typeof pid === 'number');
 
-	psList(function (err, list) {
+	processExists(pid, function (err, exists) {
 		t.assert(!err, err);
-
-		t.assert(list.some(function (x) {
-			return x.pid === pid;
-		}));
+		t.assert(exists);
 	});
 });

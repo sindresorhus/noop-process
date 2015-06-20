@@ -32,6 +32,6 @@
   ],
   "devDependencies": {
     "ava": "0.0.4",
-    "ps-list": "^2.0.0"
+    "process-exists": "^1.0.0"
   }
 }

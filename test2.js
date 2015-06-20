@@ -1,19 +1,17 @@
 'use strict';
 var test = require('ava');
-var psList = require('ps-list');
+var processExists = require('process-exists');
 
 test('persistent option', function (t) {
-	t.plan(3);
+	t.plan(4);
 
-	psList(function (err, list) {
+	processExists('noop-process-1', function (err, exists) {
 		t.assert(!err, err);
+		t.assert(!exists);
+	});
 
-		t.assert(!list.some(function (x) {
-			return x.name === 'noop-process-1';
-		}));
-
-		t.assert(list.some(function (x) {
-			return x.name === 'noop-process-2';
-		}));
+	processExists('noop-process-2', function (err, exists) {
+		t.assert(!err, err);
+		t.assert(exists);
 	});
 });
