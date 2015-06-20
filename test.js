@@ -4,7 +4,7 @@ var processExists = require('process-exists');
 var noopProcess = require('./');
 
 test('noopProcess()', function (t) {
-	t.plan(3);
+	t.plan(4);
 
 	// for test2.js
 	noopProcess({
@@ -12,12 +12,13 @@ test('noopProcess()', function (t) {
 		persistent: true
 	});
 
-	var pid = noopProcess({title: 'noop-process-1'});
-
-	t.assert(typeof pid === 'number');
-
-	processExists(pid, function (err, exists) {
+	noopProcess({title: 'noop-process-1'}, function (err, pid) {
 		t.assert(!err, err);
-		t.assert(exists);
+		t.assert(typeof pid === 'number');
+
+		processExists(pid, function (err, exists) {
+			t.assert(!err, err);
+			t.assert(exists);
+		});
 	});
 });
