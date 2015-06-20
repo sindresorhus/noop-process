@@ -1,6 +1,6 @@
 {
   "name": "noop-process",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Create a noop process and get the PID",
   "license": "MIT",
   "repository": "sindresorhus/noop-process",
