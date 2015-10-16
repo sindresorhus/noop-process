@@ -1,22 +1,11 @@
-'use strict';
-var test = require('ava');
-var processExists = require('process-exists');
-var fkill = require('fkill');
-var pify = require('pify');
-var processExistsP = pify(processExists);
+import test from 'ava';
+import processExists from 'process-exists';
+import fkill from 'fkill';
+import pify from 'pify';
 
-test('persistent option', function (t) {
-	t.plan(3);
+test('persistent option', async t => {
+	t.false(await processExists('noop-process-1'));
+	t.true(await processExists('noop-process-2'));
 
-	processExistsP('noop-process-1').then(function (exists) {
-		t.assert(!exists);
-	});
-
-	processExistsP('noop-process-2').then(function (exists) {
-		t.assert(exists);
-
-		pify(fkill)('noop-process-2').then(function () {
-			t.assert(true);
-		});
-	});
+	await pify(fkill)('noop-process-2');
 });
