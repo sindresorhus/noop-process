@@ -30,9 +30,13 @@
     "test",
     "testing"
   ],
+  "dependencies": {
+    "pinkie-promise": "^1.0.0"
+  },
   "devDependencies": {
     "ava": "0.0.4",
     "fkill": "^1.0.0",
+    "pify": "^2.2.0",
     "process-exists": "^1.0.0"
   }
 }

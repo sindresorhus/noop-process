@@ -1,10 +1,11 @@
 'use strict';
 var test = require('ava');
 var processExists = require('process-exists');
+var pify = require('pify');
 var noopProcess = require('./');
 
 test('noopProcess()', function (t) {
-	t.plan(4);
+	t.plan(2);
 
 	// for test2.js
 	noopProcess({
@@ -12,12 +13,10 @@ test('noopProcess()', function (t) {
 		persistent: true
 	});
 
-	noopProcess({title: 'noop-process-1'}, function (err, pid) {
-		t.assert(!err, err);
+	noopProcess({title: 'noop-process-1'}).then(function (pid) {
 		t.assert(typeof pid === 'number');
 
-		processExists(pid, function (err, exists) {
-			t.assert(!err, err);
+		pify(processExists)(pid).then(function (exists) {
 			t.assert(exists);
 		});
 	});
