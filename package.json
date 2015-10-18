@@ -13,7 +13,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "node test.js && node test2.js"
+    "test": "xo && ava test.js test2.js"
   },
   "files": [
     "index.js"
@@ -30,9 +30,19 @@
     "test",
     "testing"
   ],
+  "dependencies": {
+    "pinkie-promise": "^1.0.0"
+  },
   "devDependencies": {
-    "ava": "0.0.4",
+    "ava": "*",
     "fkill": "^1.0.0",
-    "process-exists": "^1.0.0"
+    "pify": "^2.2.0",
+    "process-exists": "^2.0.0",
+    "xo": "*"
+  },
+  "xo": {
+    "ignores": [
+      "test*.js"
+    ]
   }
 }

@@ -15,9 +15,9 @@ $ npm install --save noop-process
 ## Usage
 
 ```js
-var noopProcess = require('noop-process');
+const noopProcess = require('noop-process');
 
-noopProcess(function (err, pid) {
+noopProcess().then(pid => {
 	console.log(pid);
 	//=> 1337
 });
@@ -26,9 +26,9 @@ noopProcess(function (err, pid) {
 
 ## API
 
-### noopProcess([options], [callback])
+### noopProcess([options])
 
-Creates a [noop](https://en.wikipedia.org/wiki/NOP) process.
+Creates a [noop](https://en.wikipedia.org/wiki/NOP) process. Returns a promise for the process ID of the created process.
 
 #### options
 
@@ -46,14 +46,6 @@ Type: `boolean`
 Default: `false`
 
 Let the process continue to live after the main process exits.
-
-#### callback(error, pid)
-
-##### pid
-
-Type: `number`
-
-Process ID of the created process.
 
 ### noopProcess.cleanup()
 
