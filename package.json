@@ -13,7 +13,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "xo && ava test.js test2.js"
+    "test": "xo && ava test.js && ava test2.js"
   },
   "files": [
     "index.js"
@@ -35,8 +35,7 @@
   },
   "devDependencies": {
     "ava": "*",
-    "fkill": "^1.0.0",
-    "pify": "^2.2.0",
+    "fkill": "^3.0.0",
     "process-exists": "^2.0.0",
     "xo": "*"
   },

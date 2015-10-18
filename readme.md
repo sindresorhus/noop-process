@@ -28,7 +28,9 @@ noopProcess().then(pid => {
 
 ### noopProcess([options])
 
-Creates a [noop](https://en.wikipedia.org/wiki/NOP) process. Returns a promise for the process ID of the created process.
+Creates a [noop](https://en.wikipedia.org/wiki/NOP) process.
+
+Returns a promise for the process ID of the created process.
 
 #### options
 
