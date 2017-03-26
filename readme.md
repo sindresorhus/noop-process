@@ -34,17 +34,19 @@ Returns a promise for the process ID of the created process.
 
 #### options
 
+Type: `Object`
+
 ##### title
 
 Type: `string`
 
-Give the process a [title](https://nodejs.org/api/process.html#process_process_title) to make it easier to see in `ps` or kill it with `killall`.
+Give the process a [title](https://nodejs.org/api/process.html#process_process_title) to make it easier to see it in `ps` or kill it with `killall`.
 
-Maximum 15 characters as anything longer will be truncated by the system.
+Maximum 15 characters, as anything longer will be truncated by the system.
 
 ##### persistent
 
-Type: `boolean`  
+Type: `boolean`<br>
 Default: `false`
 
 Let the process continue to live after the main process exits.
@@ -56,4 +58,4 @@ All the processes are cleaned up when the main process exits, but you can use th
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
