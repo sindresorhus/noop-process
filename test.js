@@ -7,7 +7,7 @@ test('noopProcess()', async t => {
 	// For `test2.js`
 	await m({
 		title: 'noop-process-2',
-		persistent: true,
+		persistent: true
 	});
 
 	const pid = await m({title: 'noop-process-1'});
