@@ -8,7 +8,7 @@ function killAll(pids) {
 	for (const pid of pids) {
 		try {
 			process.kill(pid, 'SIGKILL');
-		} catch (err) {}
+		} catch (error) {}
 	}
 }
 
@@ -24,7 +24,8 @@ module.exports = opts => {
 	}
 
 	const title = opts.title ? `process.title = '${opts.title}';` : '';
-	const code = `${title} setInterval(() => {}, 1000 * 1000);console.log('ok');`;
+	const forceKill = opts.forceKill ? 'process.on(\'SIGTERM\', () => {console.log(\'I can only be killed by the force!!\')});' : '';
+	const code = `${title} ${forceKill} setInterval(() => {}, 1000 * 1000);console.log('ok');`;
 
 	return new Promise((resolve, reject) => {
 		const cp = childProcess.spawn('node', ['-e', code], {
