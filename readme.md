@@ -51,12 +51,12 @@ Default: `false`
 
 Let the process continue to live after the main process exits.
 
-##### forceKill
+##### onlyForceKillable
 
 Type: `boolean`<br>
 Default: `false`
 
-Process can only be killed by force.
+Process can only be killed by `SIGKILL`.
 
 ### noopProcess.cleanup()
 
