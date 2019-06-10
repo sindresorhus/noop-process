@@ -14,7 +14,7 @@ test('noopProcess()', async t => {
 	t.true(await processExists(pid));
 });
 
-test('forceKill option', async t => {
+test('`onlyForceKillable` option', async t => {
 	const pid = await m({
 		title: 'noop-process-3',
 		onlyForceKillable: true
