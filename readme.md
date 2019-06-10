@@ -8,7 +8,7 @@ Useful for testing purposes.
 ## Install
 
 ```
-$ npm install --save noop-process
+$ npm install noop-process
 ```
 
 
@@ -17,24 +17,26 @@ $ npm install --save noop-process
 ```js
 const noopProcess = require('noop-process');
 
-noopProcess().then(pid => {
+(async () => {
+	const pid = await noopProcess();
+
 	console.log(pid);
 	//=> 1337
-});
+})();
 ```
 
 
 ## API
 
-### noopProcess([options])
+### noopProcess(options?)
 
 Creates a [noop](https://en.wikipedia.org/wiki/NOP) process.
 
-Returns a promise for the process ID of the created process.
+Returns a `Promise<number>` with the process ID of the created process.
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### title
 
@@ -56,13 +58,8 @@ Let the process continue to live after the main process exits.
 Type: `boolean`<br>
 Default: `false`
 
-Process can only be killed by `SIGKILL`.
+Make the process only killable with `SIGKILL`.
 
 ### noopProcess.cleanup()
 
 All the processes are cleaned up when the main process exits, but you can use this if you need them cleaned up earlier.
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)

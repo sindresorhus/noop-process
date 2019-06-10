@@ -4,59 +4,63 @@ const childProcess = require('child_process');
 const cleanupPids = new Set();
 const exitPids = new Set();
 
-function killAll(pids) {
+const killAll = pids => {
 	for (const pid of pids) {
 		try {
 			process.kill(pid, 'SIGKILL');
 		} catch (_) {}
 	}
-}
+};
 
 process.on('exit', () => {
 	killAll(exitPids);
 });
 
-module.exports = opts => {
-	opts = opts || {};
-
-	if (opts.title && opts.title.length > 15) {
-		return Promise.reject(new Error('The title can be maximum 15 characters'));
+module.exports = async (options = {}) => {
+	if (options.title && options.title.length > 15) {
+		throw new Error('The title can be maximum 15 characters');
 	}
 
-	const title = opts.title ? `process.title = '${opts.title}';` : '';
-	const forceKill = opts.onlyForceKillable ? `
-		process.on('SIGTERM', () => {
-			console.log('I can only be killed by the force!!');
-		});
+	const title = options.title ? `process.title = '${options.title}';` : '';
 
-		process.on('SIGINT', () => {
-			console.log('I can only be killed by the force!!');
-		});
-		` : '';
-	const code = `${title} ${forceKill} setInterval(() => {}, 1000 * 1000);console.log('ok');`;
+	const onlyForceKillableCode = `
+		const handler = () => {
+			console.log('I can only be killed with SIGKILL');
+		};
+
+		process.on('SIGTERM', handler);
+		process.on('SIGINT', handler);
+	`;
+
+	const code = `
+		${title}
+		${options.onlyForceKillable ? onlyForceKillableCode : ''}
+		setInterval(() => {}, 1000 * 1000);
+		console.log('ok');
+	`;
 
 	return new Promise((resolve, reject) => {
-		const cp = childProcess.spawn('node', ['-e', code], {
+		const subprocess = childProcess.spawn('node', ['-e', code], {
 			detached: true
 		});
 
-		cp.on('error', reject);
-		cp.stdout.setEncoding('utf8');
+		subprocess.on('error', reject);
+		subprocess.stdout.setEncoding('utf8');
 
-		cp.stdout.on('data', data => {
+		subprocess.stdout.on('data', data => {
 			if (data.trim() === 'ok') {
-				cp.stdio = ['ignore', 'ignore', 'ignore'];
-				resolve(cp.pid);
+				subprocess.stdio = 'ignore';
+				resolve(subprocess.pid);
 			}
 		});
 
-		cp.unref();
+		subprocess.unref();
 
-		if (!opts.persistent) {
-			exitPids.add(cp.pid);
+		if (!options.persistent) {
+			exitPids.add(subprocess.pid);
 		}
 
-		cleanupPids.add(cp.pid);
+		cleanupPids.add(subprocess.pid);
 	});
 };
 

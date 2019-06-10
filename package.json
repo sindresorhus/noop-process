@@ -1,44 +1,42 @@
 {
-  "name": "noop-process",
-  "version": "3.1.0",
-  "description": "Create a noop process and get the PID",
-  "license": "MIT",
-  "repository": "sindresorhus/noop-process",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava test.js && ava test2.js"
-  },
-  "files": [
-    "index.js"
-  ],
-  "keywords": [
-    "noop",
-    "moot",
-    "process",
-    "proc",
-    "ps",
-    "proc",
-    "spawn",
-    "pid",
-    "test",
-    "testing"
-  ],
-  "devDependencies": {
-    "ava": "*",
-    "fkill": "^4.1.0",
-    "process-exists": "^2.0.0",
-    "xo": "*"
-  },
-  "xo": {
-    "ignores": [
-      "test*.js"
-    ]
-  }
+	"name": "noop-process",
+	"version": "3.1.0",
+	"description": "Create a noop process and get the PID",
+	"license": "MIT",
+	"repository": "sindresorhus/noop-process",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava test.js && ava test2.js"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"noop",
+		"moot",
+		"process",
+		"ps",
+		"spawn",
+		"pid",
+		"test",
+		"testing"
+	],
+	"devDependencies": {
+		"ava": "^2.0.0",
+		"fkill": "^6.2.0",
+		"process-exists": "^2.1.0",
+		"xo": "^0.24.0"
+	},
+	"xo": {
+		"ignores": [
+			"test*.js"
+		]
+	}
 }
