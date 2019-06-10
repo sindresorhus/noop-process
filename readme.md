@@ -51,6 +51,13 @@ Default: `false`
 
 Let the process continue to live after the main process exits.
 
+##### onlyForceKillable
+
+Type: `boolean`<br>
+Default: `false`
+
+Process can only be killed by `SIGKILL`.
+
 ### noopProcess.cleanup()
 
 All the processes are cleaned up when the main process exits, but you can use this if you need them cleaned up earlier.
