@@ -8,7 +8,7 @@ function killAll(pids) {
 	for (const pid of pids) {
 		try {
 			process.kill(pid, 'SIGKILL');
-		} catch (error) {}
+		} catch (_) {}
 	}
 }
 
@@ -25,8 +25,13 @@ module.exports = opts => {
 
 	const title = opts.title ? `process.title = '${opts.title}';` : '';
 	const forceKill = opts.onlyForceKillable ? `
-		process.on('SIGTERM', () => {console.log('I can only be killed by the force!!')});
-		process.on('SIGINT', () => {console.log('I can only be killed by the force!!')});
+		process.on('SIGTERM', () => {
+			console.log('I can only be killed by the force!!');
+		});
+
+		process.on('SIGINT', () => {
+			console.log('I can only be killed by the force!!');
+		});
 		` : '';
 	const code = `${title} ${forceKill} setInterval(() => {}, 1000 * 1000);console.log('ok');`;
 
