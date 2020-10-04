@@ -1,6 +1,6 @@
 # noop-process [![Build Status](https://travis-ci.org/sindresorhus/noop-process.svg?branch=master)](https://travis-ci.org/sindresorhus/noop-process)
 
-> Create a noop process and get the PID
+> Create a noop (no operation) process and get the PID
 
 Useful for testing purposes.
 
@@ -30,7 +30,7 @@ const noopProcess = require('noop-process');
 
 ### noopProcess(options?)
 
-Creates a [noop](https://en.wikipedia.org/wiki/NOP) process.
+Creates a [noop](https://en.wikipedia.org/wiki/NOP_(code)) process.
 
 Returns a `Promise<number>` with the process ID of the created process.
 
