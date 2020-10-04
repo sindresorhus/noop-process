@@ -4,7 +4,8 @@ import fkill from 'fkill';
 import semver from 'semver';
 
 if (process.platform === 'linux' && semver.gte(process.version, '12.17.0')) {
-	test.failing('noop-process title option can\'t work in linux on node > 12.17', async t => {
+	// https://github.com/nodejs/node/issues/35503
+	test.failing('noop-process title option can\'t work in Linux on Node.js >=12.17', async t => {
 		t.fail(await processExists('noop-process-2'));
 	})
 } else {
