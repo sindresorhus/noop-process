@@ -1,7 +1,6 @@
 import test from 'ava';
 import processExists from 'process-exists';
 import fkill from 'fkill';
-import semver from 'semver';
 import noopProcess from '.';
 
 test('noopProcess()', async t => {

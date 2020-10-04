@@ -1,6 +1,7 @@
 import test from 'ava';
 import processExists from 'process-exists';
 import fkill from 'fkill';
+import semver from 'semver';
 
 if (process.platform === 'linux' && semver.gte(process.version, '12.17.0')) {
 	test.failing('noop-process title option can\'t work in linux on node > 12.17', async t => {
