@@ -1,13 +1,13 @@
 {
 	"name": "noop-process",
 	"version": "4.0.0",
-	"description": "Create a noop process and get the PID",
+	"description": "Create a noop (no operation) process and get the PID",
 	"license": "MIT",
 	"repository": "sindresorhus/noop-process",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"engines": {
 		"node": ">=8"
