@@ -1,4 +1,4 @@
-# noop-process [![Build Status](https://travis-ci.org/sindresorhus/noop-process.svg?branch=master)](https://travis-ci.org/sindresorhus/noop-process)
+# noop-process
 
 > Create a noop (no operation) process and get the PID
 
