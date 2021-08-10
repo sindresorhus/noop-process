@@ -1,5 +1,5 @@
-'use strict';
-const childProcess = require('child_process');
+import process from 'node:process';
+import childProcess from 'node:child_process';
 
 const cleanupPids = new Set();
 const exitPids = new Set();
@@ -8,7 +8,7 @@ const killAll = pids => {
 	for (const pid of pids) {
 		try {
 			process.kill(pid, 'SIGKILL');
-		} catch (_) {}
+		} catch {}
 	}
 };
 
@@ -16,7 +16,7 @@ process.on('exit', () => {
 	killAll(exitPids);
 });
 
-module.exports = async (options = {}) => {
+export default async function noopProcess(options = {}) {
 	if (options.title && options.title.length > 15) {
 		throw new Error('The title can be maximum 15 characters');
 	}
@@ -40,8 +40,8 @@ module.exports = async (options = {}) => {
 	`;
 
 	return new Promise((resolve, reject) => {
-		const subprocess = childProcess.spawn('node', ['-e', code], {
-			detached: true
+		const subprocess = childProcess.spawn('node', ['--eval', code], {
+			detached: true,
 		});
 
 		subprocess.on('error', reject);
@@ -62,8 +62,8 @@ module.exports = async (options = {}) => {
 
 		cleanupPids.add(subprocess.pid);
 	});
-};
+}
 
-module.exports.cleanup = () => {
+export function cleanUpNoopProcesses() {
 	killAll(cleanupPids);
-};
+}

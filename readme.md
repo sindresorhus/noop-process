@@ -4,27 +4,22 @@
 
 Useful for testing purposes.
 
-
 ## Install
 
 ```
 $ npm install noop-process
 ```
 
-
 ## Usage
 
 ```js
-const noopProcess = require('noop-process');
+import noopProcess from 'noop-process';
 
-(async () => {
-	const pid = await noopProcess();
+const pid = await noopProcess();
 
-	console.log(pid);
-	//=> 1337
-})();
+console.log(pid);
+//=> 1337
 ```
-
 
 ## API
 
@@ -48,18 +43,24 @@ Maximum 15 characters, as anything longer will be truncated by the system.
 
 ##### persistent
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `false`
 
 Let the process continue to live after the main process exits.
 
 ##### onlyForceKillable
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `false`
 
 Make the process only killable with `SIGKILL`.
 
-### noopProcess.cleanup()
+### cleanUpNoopProcesses()
 
 All the processes are cleaned up when the main process exits, but you can use this if you need them cleaned up earlier.
+
+```js
+import {cleanUpNoopProcesses} from 'noop-process';
+
+cleanUpNoopProcesses();
+```
